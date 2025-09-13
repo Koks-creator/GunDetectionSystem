@@ -1,0 +1,11 @@
+filterpy==1.4.5
+numpy==1.26.0
+opencv_contrib_python==4.10.0.84
+opencv_python==4.9.0.80
+opencv_python_headless==4.9.0.80
+Pillow==11.3.0
+python-dotenv==1.1.1
+Requests==2.32.3
+sahi==0.11.22
+tqdm==4.65.0
+ultralytics==8.3.89

@@ -119,12 +119,6 @@ class GunDetection:
         return True
     
     def check_for_owners(self, frame: np.array, gun_bb: Tuple[int], detections: List[tuple], error_margin: int) -> bool:
-        """
-        Loops through all people to check if person's bbox crossed with suitcase's bbox, if so, then we found owner
-        :param suitcase_bb:
-        :param detections:
-        :return:
-        """
         for detection in detections:
             if self.rectangles_intersect(frame, gun_bb, detection, error_margin) and not self.switch:
                 return True
@@ -158,7 +152,7 @@ class GunDetection:
                       font_size: float = 1.4, font_thick: int = 2, bbox_thick: int = 2,
                       persons_data: defaultdict[str] = None, guns_data: defaultdict[str] = None,
                       gun_threshold: int = 5, error_margin: int = 20
-                      ) -> List[tuple[np.array, np.array, dict, np.array]]:
+                      ) -> Tuple[List[tuple[np.array, np.array, dict, np.array]], list, list]:
         frames_data = []
 
         frame_summary = self.create_empty_summary()
@@ -332,8 +326,6 @@ class GunDetection:
             """
             defaultdict(<class 'int'>, {'person_0': 4, 'person_1': 4, 'person_2': 4, 'person_3': 4, 'person_4': 4, 'person_5': 4, 'person_6': 4, 'person_7': 4, 'gun_8': 4, 'gun_9': 4, 'gun_10': 4, 'gun_11': 4, 'gun_12': 4, 'gun_13': 4, 'gun_14': 2})
             defaultdict(<class 'int'>, {'person_0': 8, 'person_1': 8, 'person_2': 8, 'person_3': 8, 'person_4': 8, 'person_5': 8, 'person_6': 8, 'person_7': 8, 'gun_8': 8, 'gun_9': 8, 'gun_10': 8, 'gun_11': 8, 'gun_12': 8, 'gun_13': 8, 'gun_14': 6})
-
-            
             """
 
             batch_fps = len(batch_frames) / batch_time if batch_time > 0 else 0
